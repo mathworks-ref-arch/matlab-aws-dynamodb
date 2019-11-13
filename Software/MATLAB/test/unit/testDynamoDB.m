@@ -2,6 +2,21 @@ classdef testDynamoDB < matlab.unittest.TestCase
     % TESTDYNAMODB Test for the  MATLAB Interface for AWS DynamoDB
     %
     % The test suite exercises the basic operations on the DynamoDB Client.
+    %
+    % Using a local DynamoDB instance
+    % ===============================
+    %
+    % In certain scenarios, particularly development and testing, it may be
+    % preferable to use a locally hosted instance of DynamoDB.
+    % To run the unit test against a local instance of DynamoDB rather than the
+    % AWS hosted version get a copy of the package, see:
+    % https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+    % Extract it to a given location and start it outside MATLAB, e.g.:
+    % java -D"java.library.path=./DynamoDBLocal_lib" -jar DynamoDBLocal.jar
+    % Define an environment variable DDBENDPOINTURI to point to the instance
+    % e.g. in Bash: export DDBENDPOINTURI="http://localhost:8000"
+    % If the environment variable is not defined the standard AWS hosted version
+    % will be used.
 
     % Copyright 2019 The MathWorks, Inc.
 
@@ -21,7 +36,6 @@ classdef testDynamoDB < matlab.unittest.TestCase
 
         end
     end
-
 
     methods (Test)
         function testConstructor(testCase)
@@ -45,6 +59,9 @@ classdef testDynamoDB < matlab.unittest.TestCase
             import java.util.UUID;
             % create a client from which to create a DynamoDB object
             ddbClient = aws.dynamodbv2.AmazonDynamoDBClient;
+            if ~isempty(getenv('DDBENDPOINTURI'))
+                ddbClient.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
+            end
             ddbClient.useCredentialsProviderChain = false;
             ddbClient.initialize();
 
@@ -142,6 +159,9 @@ classdef testDynamoDB < matlab.unittest.TestCase
             import java.util.UUID;
             % create a client from which to create a DynamoDB object
             ddbClient = aws.dynamodbv2.AmazonDynamoDBClient;
+            if ~isempty(getenv('DDBENDPOINTURI'))
+                ddbClient.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
+            end
             ddbClient.useCredentialsProviderChain = false;
             ddbClient.initialize();
 

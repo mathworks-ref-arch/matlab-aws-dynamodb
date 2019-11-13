@@ -7,12 +7,13 @@ Use the following commands or OS specific equivalents to do a maven build of the
 $ cd matlab-aws-dynamodb/Software/Java
 $ mvn clean verify package
 ```
-The above pom file currently references version *1.11.367* of the AWS SDK:
+
+The above pom file currently references version *1.11.567* of the AWS SDK:
 ```xml
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-bom</artifactId>
-  <version>1.11.367</version>
+  <version>1.11.567</version>
   <type>pom</type>
   <scope>import</scope>
 </dependency>
@@ -23,7 +24,7 @@ To build with a more recent version of the SDK, amend the pom file to a specific
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-bom</artifactId>
-  <version>[1.11.367,)</version>
+  <version>[1.11.567,)</version>
   <type>pom</type>
   <scope>import</scope>
 </dependency>

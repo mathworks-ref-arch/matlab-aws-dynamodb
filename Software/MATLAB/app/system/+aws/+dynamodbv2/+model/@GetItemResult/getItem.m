@@ -43,7 +43,7 @@ if ~isempty(itemJ)
     end
 
 else
-    % if itemJ was returned as empty the return an empty constainers.Map()
+    % if itemJ was returned as empty the return an empty containers.Map()
     item = containers.Map();
 end
 

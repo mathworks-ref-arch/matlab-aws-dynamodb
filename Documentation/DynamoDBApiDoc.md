@@ -17,7 +17,7 @@
  
   Example:
      % Create client
-     ddb = aws.dynamodbv2.Client;
+     ddb = aws.dynamodbv2.AmazonDynamoDBClient;
      % Initialize the client
      ddb.initialize();
      % Use the client to carry out actions on DynamoDB
@@ -26,10 +26,6 @@
      createResult = ddb.createTable(createTableRequest);
      % Shutdown the client when no longer needed
      ddb.shutdown();
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.AmazonDynamoDBClient
-
 ```
 ### @AmazonDynamoDBClient/createTable.m
 ```notalanguage
@@ -88,7 +84,7 @@
   client configuration and initiate the connection to DynamoDB
  
   Example:
-     ddb = aws.dynamodbv2.Client();
+     ddb = aws.dynamodbv2.AmazonDynamoDBClient();
      ddb.intialize();
 ```
 ### @AmazonDynamoDBClient/listTables.m
@@ -215,10 +211,6 @@
   ATTRIBUTEACTION Enumeration of attribute actions
   Possible values are: ADD, PUT or DELETE
   a toJava() method returns the equivalent Java enumeration.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.AttributeAction
-
 ```
 
 ------
@@ -231,10 +223,6 @@
   ATTRIBUTEDEFINITION Object to represent an attribute definition
   An AttributeDefinition is constructed based on the equivalent underlying
   Java SDK object.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.AttributeDefinition
-
 ```
 ### @AttributeDefinition/getAttributeName.m
 ```notalanguage
@@ -267,10 +255,6 @@
      attributeValue = AttributeValue();
      attributeValue = AttributeValue(AttributeValueJavaObject);
      attributeValue = AttributeValue('myAttributeStr');
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.AttributeValue
-
 ```
 ### @AttributeValue/getB.m
 ```notalanguage
@@ -366,10 +350,6 @@
 ### @CreateTableRequest/CreateTableRequest.m
 ```notalanguage
   CREATETABLEREQUEST Object to represent a createTable request
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.CreateTableRequest
-
 ```
 ### @CreateTableRequest/setAttributeDefinitions.m
 ```notalanguage
@@ -400,10 +380,6 @@
 ### @CreateTableResult/CreateTableResult.m
 ```notalanguage
   CREATETABLERESULT Object to represent a createTable result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.CreateTableResult
-
 ```
 ### @CreateTableResult/getTableDescription.m
 ```notalanguage
@@ -418,10 +394,6 @@
 ### @DeleteItemResult/DeleteItemResult.m
 ```notalanguage
   DELETEITEMRESULT Object to represent a deleteItem result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.DeleteItemResult
-
 ```
 
 ------
@@ -432,10 +404,6 @@
 ### @DeleteTableResult/DeleteTableResult.m
 ```notalanguage
   DELETETABLERESULT Object to represent a deleteTable result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.DeleteTableResult
-
 ```
 ### @DeleteTableResult/getTableDescription.m
 ```notalanguage
@@ -450,10 +418,6 @@
 ### @DescribeTableResult/DescribeTableResult.m
 ```notalanguage
   DESCRIBETABLERESULT Object to represent a describeTable result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.DescribeTableResult
-
 ```
 ### @DescribeTableResult/getTable.m
 ```notalanguage
@@ -478,10 +442,6 @@
      getItemRequest = GetItemRequest();
      getItemRequest = GetItemRequest(GetItemRequestJavaObject);
      getItemRequest = GetItemRequest(tableName, key);
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.GetItemRequest
-
 ```
 ### @GetItemRequest/getConsistentRead.m
 ```notalanguage
@@ -510,15 +470,11 @@
 ### @GetItemResult/GetItemResult.m
 ```notalanguage
   GETITEMRESULT Object to represent result of a GetItem
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.GetItemResult
-
 ```
 ### @GetItemResult/getItem.m
 ```notalanguage
   GETITEM Returns a map of attribute names to AttributeValue objects
-  the returned values are specified by ProjectionExpression.
+  The returned values are specified by ProjectionExpression.
   item is returned as a containers.Map
 ```
 
@@ -535,10 +491,6 @@
  
   Example:
      keySchemaElement = KeySchemaElement('myAttribName', aws.dynamodbv2.model.KeyType.HASH);
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.KeySchemaElement
-
 ```
 
 ------
@@ -551,10 +503,6 @@
   KEYTYPE Enumeration of key types
   Possible values are HASH or RANGE. A to toJava method returns the Java
   equivalent.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.KeyType
-
 ```
 
 ------
@@ -565,10 +513,6 @@
 ### @ListTablesRequest/ListTablesRequest.m
 ```notalanguage
   LISTTABLESREQUEST Object to represent a listTables request
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ListTablesRequest
-
 ```
 ### @ListTablesRequest/setExclusiveStartTableName.m
 ```notalanguage
@@ -589,10 +533,6 @@
 ### @ListTablesResult/ListTablesResult.m
 ```notalanguage
   LISTTABLESRESULT Object to represent result of a ListTables
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ListTablesResult
-
 ```
 ### @ListTablesResult/getLastEvaluatedTableName.m
 ```notalanguage
@@ -617,10 +557,6 @@
   The settings can be modified using the UpdateTable operation.
   For current minimum and maximum provisioned throughput values, see limits
   in the Amazon DynamoDB Developer Guide.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ProvisionedThroughput
-
 ```
 
 ------
@@ -632,10 +568,6 @@
 ```notalanguage
   PROVISIONEDTHROUGHPUTDESCRIPTION Provisioned throughput table settings
   Consists of read and write capacity units.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ProvisionedThroughputDescription
-
 ```
 ### @ProvisionedThroughputDescription/getReadCapacityUnits.m
 ```notalanguage
@@ -660,12 +592,10 @@
 ### @PutItemRequest/PutItemRequest.m
 ```notalanguage
   PUTITEMREQUEST Object to represent a PutItem request
-  TODO Example
-  Copyright 2019 The MathWorks, Inc.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.PutItemRequest
-
+ 
+  Example:
+     putItemRequest = aws.dynamodbv2.model.PutItemRequest(tableName, attributeValues);
+     putItemResult = ddb.putItem(putItemRequest);
 ```
 
 ------
@@ -676,10 +606,6 @@
 ### @PutItemResult/PutItemResult.m
 ```notalanguage
   PUTITEMRESULT Object to represent result of a PutItem
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.PutItemResult
-
 ```
 
 ------
@@ -690,10 +616,6 @@
 ### @QueryRequest/QueryRequest.m
 ```notalanguage
   QUERYREQUEST Object to represent a query request
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.QueryRequest
-
 ```
 ### @QueryRequest/setConsistentRead.m
 ```notalanguage
@@ -726,15 +648,18 @@
 ### @QueryResult/QueryResult.m
 ```notalanguage
   QUERYRESULT Object to represent a query result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.QueryResult
-
 ```
 ### @QueryResult/getCount.m
 ```notalanguage
   GETCOUNT The number of items in the response
   Result is returned as a double.
+```
+### @QueryResult/getItems.m
+```notalanguage
+  GETITEMS Returns a cell array of maps of attribute names to AttributeValues
+  The returned values match the query criteria. Elements in the maps consist
+  of attribute names and the values for that attribute.
+  Items are returned as a cell array of containers.Maps.
 ```
 
 ------
@@ -747,10 +672,6 @@
   RETURNVALUE Enumeration of return values
   Possible values are: ALL_NEW, ALL_OLD, NONE, UPDATED_NEW or UPDATED_OLD
   A toJava()method is provided to return the Java equivalent enum.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ReturnValue
-
 ```
 
 ------
@@ -763,10 +684,6 @@
   SCALARATTRIBUTETYPE Enumeration of attribute types
   Possible values are B, N, or S. A toJava() method is provided to return
   the Java equivalent.
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.ScalarAttributeType
-
 ```
 
 ------
@@ -777,10 +694,6 @@
 ### @TableDescription/TableDescription.m
 ```notalanguage
   TABLEDESCRIPTION Represents the properties of a table
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.TableDescription
-
 ```
 ### @TableDescription/getAttributeDefinitions.m
 ```notalanguage
@@ -820,10 +733,6 @@
 ### @UpdateItemRequest/UpdateItemRequest.m
 ```notalanguage
   UPDATEITEMREQUEST Object to represent a updateItem request
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.UpdateItemRequest
-
 ```
 ### @UpdateItemRequest/setConditionExpression.m
 ```notalanguage
@@ -864,10 +773,6 @@
 ### @UpdateItemResult/UpdateItemResult.m
 ```notalanguage
   UPDATEITEMRESULT Object to represent a updateItem result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.UpdateItemResult
-
 ```
 
 ------
@@ -878,10 +783,6 @@
 ### @UpdateTableRequest/UpdateTableRequest.m
 ```notalanguage
   UPDATETABLEREQUEST Object to represent a updateTable request
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.UpdateTableRequest
-
 ```
 ### @UpdateTableRequest/setProvisionedThroughput.m
 ```notalanguage
@@ -902,10 +803,6 @@
 ### @UpdateTableResult/UpdateTableResult.m
 ```notalanguage
   UPDATETABLERESULT Object to represent a updateTable result
-
-    Reference page in Doc Center
-       doc aws.dynamodbv2.model.UpdateTableResult
-
 ```
 ### @UpdateTableResult/getTableDescription.m
 ```notalanguage
@@ -932,12 +829,11 @@
    * Specify TCP socket buffer size hints
   (Only limited proxy related methods are currently available)
  
-  Example:
+  Example, in this case using an s3 client:
     s3 = aws.s3.Client();
     s3.clientConfiguration.setProxyHost('proxyHost','myproxy.example.com');
     s3.clientConfiguration.setProxyPort(8080);
     s3.initialize();
- 
 
     Reference page in Doc Center
        doc aws.ClientConfiguration
@@ -945,13 +841,14 @@
 ```
 ### @ClientConfiguration/setProxyHost.m
 ```notalanguage
-  SETPROXYHOST Sets the optional proxy host the client will connect through.
+  SETPROXYHOST Sets the optional proxy host the client will connect through
   This is based on the setting in the MATLAB preferences panel. If the host
   is not set there on Windows then the Windows system preferences will be
-  used. The proxy settings may vary based on the URL, thus a sample URL
-  should be provided if a specific URL is not known https://s3.amazonaws.com
-  is a useful default as it is likely to match the relevant proxy selection
-  rules.
+  used. Though it is not normally the case proxy settings may vary based on the
+  destination URL, if this is the case a URL should be provided for a specific
+  service. If a URL is not provided then https://s3.amazonaws.com is used as
+  a default and is likely to match the relevant proxy selection rules for AWS
+  traffic.
  
   Examples:
  
@@ -962,49 +859,46 @@
     To have the proxy host automatically set based on the given URL:
         clientConfig.setProxyHost('autoURL','https://examplebucket.amazonaws.com');
  
-    To force the value of the proxy host TO a given value, e.g. myproxy.example.com:
+    To force the value of the proxy host to a given value, e.g. myproxy.example.com:
         clientConfig.setProxyHost('proxyHost','myproxy.example.com');
     Note this does not overwrite the value set in the preferences panel.
  
-  The s3 client initialization call will invoke setProxyHost();
-  to set preference based on the MATLAB preference if the proxyHost value is not
-  an empty value.
- 
+  The client initialization call will invoke setProxyHost() to set a value based
+  on the MATLAB preference if the proxyHost value is not to an empty value.
 ```
 ### @ClientConfiguration/setProxyPassword.m
 ```notalanguage
-  SETPROXYPASSWORD Sets the optional proxy password.
-  This is based on the setting in the MATLAB preferences panel. If the
-  preferences password is not set then on Windows the OS system preferences
-  will be used.
+  SETPROXYPASSWORD Sets the optional proxy password
+  This is based on the setting in the MATLAB preferences panel. If the password
+  is not set there on Windows then the Windows system preferences will be
+  used.
  
   Examples:
  
     To set the password to a given value:
-        clientConfig.setProxyPassword('2312sdsdes?$!%');
+        clientConfig.setProxyPassword('myProxyPassword');
     Note this does not overwrite the value set in the preferences panel.
  
     To set the password automatically based on provided preferences:
         clientConfig.setProxyPassword();
  
-  The s3 client initialization call will invoke setProxyPassword();
-  to set preference based on the MATLAB preference if the proxyPassword value is
-  not an empty value.
+  The client initialization call will invoke setProxyPassword() to set
+  a value based on the MATLAB preference if the proxy password value is set.
  
   Note, it is bad practice to store credentials in code, ideally this value
   should be read from a permission controlled file or other secure source
   as required.
- 
 ```
 ### @ClientConfiguration/setProxyPort.m
 ```notalanguage
-  SETPROXYPORT Sets the optional proxy port the client will connect through.
+  SETPROXYPORT Sets the optional proxy port the client will connect through
   This is normally based on the setting in the MATLAB preferences panel. If the
   port is not set there on Windows then the Windows system preferences will be
-  used. The proxy settings may vary based on the URL, thus a sample URL
-  should be provided if a specific URL is not known https://s3.amazonaws.com
-  is a useful default as it is likely to match the relevant proxy selection
-  rules.
+  used. Though it is not normally the case proxy settings may vary based on the
+  destination URL, if this is the case a URL should be provided for a specific
+  service. If a URL is not provided then https://s3.amazonaws.com is used as
+  a default and is likely to match the relevant proxy selection rules for AWS
+  traffic.
  
   Examples:
  
@@ -1019,35 +913,32 @@
         clientConfig.setProxyPort(8080);
     Note this does not alter the value held set in the preferences panel.
  
-  The s3 client initialization call will invoke setProxyPort();
-  to set preference based on the MATLAB preference if the proxyPort value is not
-  an empty value.
- 
+  The client initialization call will invoke setProxyPort() to set a value based
+  on the MATLAB preference if the proxy port value is not an empty value.
 ```
 ### @ClientConfiguration/setProxyUsername.m
 ```notalanguage
-  SETPROXYUSERNAME Sets the optional proxy username.
-  This is based on the setting in the MATLAB preferences panel. If the
-  username is not set there on Windows then the Windows system preferences
-  will be used.
+  SETPROXYUSERNAME Sets the optional proxy username
+  This is based on the setting in the MATLAB preferences panel. If the username
+  is not set there on Windows then the Windows system preferences will be
+  used.
  
   Examples:
  
      To set the username to a given value:
-         clientConfig.setProxyUsername('JoeProxyUser');
+         clientConfig.setProxyUsername('myProxyUsername');
      Note this does not overwrite the value set in the preferences panel.
  
      To set the password automatically based on provided preferences:
          clientConfig.setProxyUsername();
  
-  The s3 client initialization call will invoke setProxyUsername();
+  The client initialization call will invoke setProxyUsername();
   to set preference based on the MATLAB preference if the proxyUsername value is
   not an empty value.
  
   Note it is bad practice to store credentials in code, ideally this value
   should be read from a permission controlled file or other secure source
   as required.
- 
 ```
 
 ------
