@@ -1,9 +1,9 @@
 # Basic Usage
 
-For brevity and readability, this document includes key sections of code only, with an emphasis on clarity rather than performance or conciseness. For more complete examples refer to the included test examples or the references listed below. Concepts such as the underlying data model or expression syntax are not explained, please refer to the AWS DynamoDB documentation for such detail.
+For brevity and readability, this document includes key sections of code only, with an emphasis on clarity rather than performance or conciseness. For more complete examples refer to the included test examples or the references listed below. Concepts such as the underlying data model or expression syntax are not explained, please refer to the Amazon DynamoDB documentation for such detail.
 
 ## Creating a client
-The first step is to create a client to connect to DynamoDB. The client should then be initialized in order to authenticate it. See [Authentication](Authentication.m) for details on providing authentication credentials.
+The first step is to create a client to connect to DynamoDB. The client should then be initialized in order to authenticate it. See [Authentication](Authentication.md) for details on providing authentication credentials.
 
 ```matlab
 ddbClient = aws.dynamodbv2.AmazonDynamoDBClient();
@@ -99,10 +99,10 @@ table.waitForDelete();
 ## Putting items
 The following code steps through the process of putting data in to a table. It builds a table of the following form:
 
-  | Cellists                           |
-  |------------------------------------|
-  | **Name** | **Language** | **Born** |
-  | Pau      | ca           | 1876     |
+| Cellists |            |        |
+|----------|------------|--------|
+| *Name*   | *Language* | *Born* |
+| Pau      | ca         | 1876   |
 
 The table name is *Cellists* and there is one entry with 3 values for Name, Language and Born.
 
@@ -247,11 +247,11 @@ tables = dynamoDB.listTables();
 
 The following sample code uses the low-level API to query a table. It assumes a table has been created of the following form, with *Language* set to be the partition key.
 
-  | tableName                   |
-  |--------------|--------------|
-  | **Language** | **Greeting** |
-  | eng          | hello        |
-  | fr           | bonjour      |
+  | tableName  |            |
+  |------------|------------|
+  | *Language* | *Greeting* |
+  | eng        | hello      |
+  | fr         | bonjour    |
 
 In this example just one value is queried, *eng*, however multiple values can be queried by setting more *ExpressionAttributeValues*
 
@@ -410,4 +410,4 @@ Full details of the supported API can be found in the [API Documentation](Dynamo
 * [https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/java/example_code/dynamodb/src/main/java/aws/example/dynamodb](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/java/example_code/dynamodb/src/main/java/aws/example/dynamodb)
 
 
-[//]: #  (Copyright 2019 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)

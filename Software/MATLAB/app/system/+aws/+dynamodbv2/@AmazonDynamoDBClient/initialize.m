@@ -7,7 +7,7 @@ function initStat = initialize(obj, varargin)
 %    ddb = aws.dynamodbv2.AmazonDynamoDBClient();
 %    ddb.intialize();
 
-% Copyright 2019 The MathWorks, Inc.
+% Copyright 2019-2021 The MathWorks, Inc.
 
 %% Imports
 % Exceptions
@@ -25,7 +25,7 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain
 
 % Builders
-% Import AWS DynamoDB client builder
+% Import Amazon DynamoDB client builder
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder
 % Regions

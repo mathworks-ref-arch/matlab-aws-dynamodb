@@ -1,4 +1,6 @@
-# Logging - Controlling command output
+# Logging
+
+## Controlling command output
 The Client uses a logging framework which is similar in many regards to the well known log4j framework. It supports logging levels of:
 * verbose - detailed messages that are useful during development and testing but are likely to be too detailed in day-to-day usage.
 * debug - default level with minimal output, recommended as a default output level.

@@ -1,7 +1,7 @@
-# MATLAB Interface *for AWS DynamoDB* API documentation
+# MATLAB Interface *for Amazon DynamoDB* API documentation
 
 
-## AWS DynamoDB Interface Objects and Methods:
+## Amazon DynamoDB Interface Objects and Methods:
 * @AmazonDynamoDBClient
 
 
@@ -12,7 +12,7 @@
 
 ### @AmazonDynamoDBClient/AmazonDynamoDBClient.m
 ```notalanguage
-  CLIENT Object to represent an AWS DynamoDB client
+  CLIENT Object to represent an Amazon DynamoDB client
   The client is used to carry out operations with the DynamoDB service
  
   Example:
@@ -26,6 +26,15 @@
      createResult = ddb.createTable(createTableRequest);
      % Shutdown the client when no longer needed
      ddb.shutdown();
+
+    Documentation for aws.dynamodbv2.AmazonDynamoDBClient
+       doc aws.dynamodbv2.AmazonDynamoDBClient
+
+```
+### @AmazonDynamoDBClient/batchWriteItem.m
+```notalanguage
+  BATCHWRITEITEM Puts or deletes multiple items in one or more tables
+  A BatchWriteItemResult object is returned.
 ```
 ### @AmazonDynamoDBClient/createTable.m
 ```notalanguage
@@ -171,10 +180,12 @@
 ```
 
 ------
-## AWS DynamoDB Interface +model Objects and Methods:
+## Amazon DynamoDB Interface +model Objects and Methods:
 * @AttributeAction
 * @AttributeDefinition
 * @AttributeValue
+* @BatchWriteItemRequest
+* @BatchWriteItemResult
 * @CreateTableRequest
 * @CreateTableResult
 * @DeleteItemResult
@@ -199,6 +210,7 @@
 * @UpdateItemResult
 * @UpdateTableRequest
 * @UpdateTableResult
+* @WriteRequest
 
 
 
@@ -211,6 +223,10 @@
   ATTRIBUTEACTION Enumeration of attribute actions
   Possible values are: ADD, PUT or DELETE
   a toJava() method returns the equivalent Java enumeration.
+
+    Documentation for aws.dynamodbv2.model.AttributeAction
+       doc aws.dynamodbv2.model.AttributeAction
+
 ```
 
 ------
@@ -223,6 +239,10 @@
   ATTRIBUTEDEFINITION Object to represent an attribute definition
   An AttributeDefinition is constructed based on the equivalent underlying
   Java SDK object.
+
+    Documentation for aws.dynamodbv2.model.AttributeDefinition
+       doc aws.dynamodbv2.model.AttributeDefinition
+
 ```
 ### @AttributeDefinition/getAttributeName.m
 ```notalanguage
@@ -255,6 +275,10 @@
      attributeValue = AttributeValue();
      attributeValue = AttributeValue(AttributeValueJavaObject);
      attributeValue = AttributeValue('myAttributeStr');
+
+    Documentation for aws.dynamodbv2.model.AttributeValue
+       doc aws.dynamodbv2.model.AttributeValue
+
 ```
 ### @AttributeValue/getB.m
 ```notalanguage
@@ -275,6 +299,7 @@
 ```notalanguage
   GETNS Gets a set of attributes of type Number
   Result is returned as a cell array of character vectors.
+  If no results are available the cell array may be empty.
 ```
 ### @AttributeValue/getNULL.m
 ```notalanguage
@@ -324,7 +349,10 @@
 ### @AttributeValue/setNS.m
 ```notalanguage
   SETNS Set a cell array of attributes of type Number
-  Cell array entries should be of type character vector
+  Cell array entries should be of type character vector.
+  The cell array will be mapped to a 1D array as it is converted to a Java List.
+  Dimensional structure will not be retained.
+  Insert order will not be retained.
 ```
 ### @AttributeValue/setNULL.m
 ```notalanguage
@@ -345,11 +373,50 @@
 ------
 
 
+## @BatchWriteItemRequest
+
+### @BatchWriteItemRequest/BatchWriteItemRequest.m
+```notalanguage
+  BATCHWRITEITEMREQUEST Object to represent a batchWriteItem request
+  A write request batch is limited to 25 items. Multiple BatchWriteRequest can
+  be made at once providing catpacity is provisioned.
+
+    Documentation for aws.dynamodbv2.model.BatchWriteItemRequest
+       doc aws.dynamodbv2.model.BatchWriteItemRequest
+
+```
+### @BatchWriteItemRequest/addRequestItemsEntry.m
+```notalanguage
+  ADDREQUESTITEMSENTRY Add a single RequestItems entry
+  A aws.dynamodbv2.model.BatchWriteItemRequest object is returned
+```
+
+------
+
+
+## @BatchWriteItemResult
+
+### @BatchWriteItemResult/BatchWriteItemResult.m
+```notalanguage
+  BATCHWRITEITEMRESULT Represents the output of a BatchWriteItem operation
+
+    Documentation for aws.dynamodbv2.model.BatchWriteItemResult
+       doc aws.dynamodbv2.model.BatchWriteItemResult
+
+```
+
+------
+
+
 ## @CreateTableRequest
 
 ### @CreateTableRequest/CreateTableRequest.m
 ```notalanguage
   CREATETABLEREQUEST Object to represent a createTable request
+
+    Documentation for aws.dynamodbv2.model.CreateTableRequest
+       doc aws.dynamodbv2.model.CreateTableRequest
+
 ```
 ### @CreateTableRequest/setAttributeDefinitions.m
 ```notalanguage
@@ -380,6 +447,10 @@
 ### @CreateTableResult/CreateTableResult.m
 ```notalanguage
   CREATETABLERESULT Object to represent a createTable result
+
+    Documentation for aws.dynamodbv2.model.CreateTableResult
+       doc aws.dynamodbv2.model.CreateTableResult
+
 ```
 ### @CreateTableResult/getTableDescription.m
 ```notalanguage
@@ -394,6 +465,10 @@
 ### @DeleteItemResult/DeleteItemResult.m
 ```notalanguage
   DELETEITEMRESULT Object to represent a deleteItem result
+
+    Documentation for aws.dynamodbv2.model.DeleteItemResult
+       doc aws.dynamodbv2.model.DeleteItemResult
+
 ```
 
 ------
@@ -404,6 +479,10 @@
 ### @DeleteTableResult/DeleteTableResult.m
 ```notalanguage
   DELETETABLERESULT Object to represent a deleteTable result
+
+    Documentation for aws.dynamodbv2.model.DeleteTableResult
+       doc aws.dynamodbv2.model.DeleteTableResult
+
 ```
 ### @DeleteTableResult/getTableDescription.m
 ```notalanguage
@@ -418,6 +497,10 @@
 ### @DescribeTableResult/DescribeTableResult.m
 ```notalanguage
   DESCRIBETABLERESULT Object to represent a describeTable result
+
+    Documentation for aws.dynamodbv2.model.DescribeTableResult
+       doc aws.dynamodbv2.model.DescribeTableResult
+
 ```
 ### @DescribeTableResult/getTable.m
 ```notalanguage
@@ -442,6 +525,10 @@
      getItemRequest = GetItemRequest();
      getItemRequest = GetItemRequest(GetItemRequestJavaObject);
      getItemRequest = GetItemRequest(tableName, key);
+
+    Documentation for aws.dynamodbv2.model.GetItemRequest
+       doc aws.dynamodbv2.model.GetItemRequest
+
 ```
 ### @GetItemRequest/getConsistentRead.m
 ```notalanguage
@@ -470,6 +557,10 @@
 ### @GetItemResult/GetItemResult.m
 ```notalanguage
   GETITEMRESULT Object to represent result of a GetItem
+
+    Documentation for aws.dynamodbv2.model.GetItemResult
+       doc aws.dynamodbv2.model.GetItemResult
+
 ```
 ### @GetItemResult/getItem.m
 ```notalanguage
@@ -491,6 +582,10 @@
  
   Example:
      keySchemaElement = KeySchemaElement('myAttribName', aws.dynamodbv2.model.KeyType.HASH);
+
+    Documentation for aws.dynamodbv2.model.KeySchemaElement
+       doc aws.dynamodbv2.model.KeySchemaElement
+
 ```
 
 ------
@@ -503,6 +598,10 @@
   KEYTYPE Enumeration of key types
   Possible values are HASH or RANGE. A to toJava method returns the Java
   equivalent.
+
+    Documentation for aws.dynamodbv2.model.KeyType
+       doc aws.dynamodbv2.model.KeyType
+
 ```
 
 ------
@@ -513,6 +612,10 @@
 ### @ListTablesRequest/ListTablesRequest.m
 ```notalanguage
   LISTTABLESREQUEST Object to represent a listTables request
+
+    Documentation for aws.dynamodbv2.model.ListTablesRequest
+       doc aws.dynamodbv2.model.ListTablesRequest
+
 ```
 ### @ListTablesRequest/setExclusiveStartTableName.m
 ```notalanguage
@@ -533,6 +636,10 @@
 ### @ListTablesResult/ListTablesResult.m
 ```notalanguage
   LISTTABLESRESULT Object to represent result of a ListTables
+
+    Documentation for aws.dynamodbv2.model.ListTablesResult
+       doc aws.dynamodbv2.model.ListTablesResult
+
 ```
 ### @ListTablesResult/getLastEvaluatedTableName.m
 ```notalanguage
@@ -557,6 +664,10 @@
   The settings can be modified using the UpdateTable operation.
   For current minimum and maximum provisioned throughput values, see limits
   in the Amazon DynamoDB Developer Guide.
+
+    Documentation for aws.dynamodbv2.model.ProvisionedThroughput
+       doc aws.dynamodbv2.model.ProvisionedThroughput
+
 ```
 
 ------
@@ -568,6 +679,10 @@
 ```notalanguage
   PROVISIONEDTHROUGHPUTDESCRIPTION Provisioned throughput table settings
   Consists of read and write capacity units.
+
+    Documentation for aws.dynamodbv2.model.ProvisionedThroughputDescription
+       doc aws.dynamodbv2.model.ProvisionedThroughputDescription
+
 ```
 ### @ProvisionedThroughputDescription/getReadCapacityUnits.m
 ```notalanguage
@@ -596,6 +711,10 @@
   Example:
      putItemRequest = aws.dynamodbv2.model.PutItemRequest(tableName, attributeValues);
      putItemResult = ddb.putItem(putItemRequest);
+
+    Documentation for aws.dynamodbv2.model.PutItemRequest
+       doc aws.dynamodbv2.model.PutItemRequest
+
 ```
 
 ------
@@ -606,6 +725,10 @@
 ### @PutItemResult/PutItemResult.m
 ```notalanguage
   PUTITEMRESULT Object to represent result of a PutItem
+
+    Documentation for aws.dynamodbv2.model.PutItemResult
+       doc aws.dynamodbv2.model.PutItemResult
+
 ```
 
 ------
@@ -616,6 +739,10 @@
 ### @QueryRequest/QueryRequest.m
 ```notalanguage
   QUERYREQUEST Object to represent a query request
+
+    Documentation for aws.dynamodbv2.model.QueryRequest
+       doc aws.dynamodbv2.model.QueryRequest
+
 ```
 ### @QueryRequest/setConsistentRead.m
 ```notalanguage
@@ -648,6 +775,10 @@
 ### @QueryResult/QueryResult.m
 ```notalanguage
   QUERYRESULT Object to represent a query result
+
+    Documentation for aws.dynamodbv2.model.QueryResult
+       doc aws.dynamodbv2.model.QueryResult
+
 ```
 ### @QueryResult/getCount.m
 ```notalanguage
@@ -672,6 +803,10 @@
   RETURNVALUE Enumeration of return values
   Possible values are: ALL_NEW, ALL_OLD, NONE, UPDATED_NEW or UPDATED_OLD
   A toJava()method is provided to return the Java equivalent enum.
+
+    Documentation for aws.dynamodbv2.model.ReturnValue
+       doc aws.dynamodbv2.model.ReturnValue
+
 ```
 
 ------
@@ -684,6 +819,10 @@
   SCALARATTRIBUTETYPE Enumeration of attribute types
   Possible values are B, N, or S. A toJava() method is provided to return
   the Java equivalent.
+
+    Documentation for aws.dynamodbv2.model.ScalarAttributeType
+       doc aws.dynamodbv2.model.ScalarAttributeType
+
 ```
 
 ------
@@ -694,6 +833,10 @@
 ### @TableDescription/TableDescription.m
 ```notalanguage
   TABLEDESCRIPTION Represents the properties of a table
+
+    Documentation for aws.dynamodbv2.model.TableDescription
+       doc aws.dynamodbv2.model.TableDescription
+
 ```
 ### @TableDescription/getAttributeDefinitions.m
 ```notalanguage
@@ -733,6 +876,10 @@
 ### @UpdateItemRequest/UpdateItemRequest.m
 ```notalanguage
   UPDATEITEMREQUEST Object to represent a updateItem request
+
+    Documentation for aws.dynamodbv2.model.UpdateItemRequest
+       doc aws.dynamodbv2.model.UpdateItemRequest
+
 ```
 ### @UpdateItemRequest/setConditionExpression.m
 ```notalanguage
@@ -773,6 +920,10 @@
 ### @UpdateItemResult/UpdateItemResult.m
 ```notalanguage
   UPDATEITEMRESULT Object to represent a updateItem result
+
+    Documentation for aws.dynamodbv2.model.UpdateItemResult
+       doc aws.dynamodbv2.model.UpdateItemResult
+
 ```
 
 ------
@@ -783,6 +934,10 @@
 ### @UpdateTableRequest/UpdateTableRequest.m
 ```notalanguage
   UPDATETABLEREQUEST Object to represent a updateTable request
+
+    Documentation for aws.dynamodbv2.model.UpdateTableRequest
+       doc aws.dynamodbv2.model.UpdateTableRequest
+
 ```
 ### @UpdateTableRequest/setProvisionedThroughput.m
 ```notalanguage
@@ -803,10 +958,28 @@
 ### @UpdateTableResult/UpdateTableResult.m
 ```notalanguage
   UPDATETABLERESULT Object to represent a updateTable result
+
+    Documentation for aws.dynamodbv2.model.UpdateTableResult
+       doc aws.dynamodbv2.model.UpdateTableResult
+
 ```
 ### @UpdateTableResult/getTableDescription.m
 ```notalanguage
   GETTABLEDESCRIPTION Gets the properties of the table
+```
+
+------
+
+
+## @WriteRequest
+
+### @WriteRequest/WriteRequest.m
+```notalanguage
+  WRITEREQUEST Represents an operation to perform - either DeleteItem or PutItem
+
+    Documentation for aws.dynamodbv2.model.WriteRequest
+       doc aws.dynamodbv2.model.WriteRequest
+
 ```
 
 ------
@@ -835,9 +1008,29 @@
     s3.clientConfiguration.setProxyPort(8080);
     s3.initialize();
 
-    Reference page in Doc Center
+    Documentation for aws.ClientConfiguration
        doc aws.ClientConfiguration
 
+```
+### @ClientConfiguration/getNonProxyHosts.m
+```notalanguage
+  GETNONPROXYHOSTS Sets optional hosts accessed without going through the proxy
+  Returns either the nonProxyHosts set on this object, or if not provided,
+  returns the value of the Java system property http.nonProxyHosts.
+  Result is returned as a character vector.
+ 
+  Note the following caveat from the Amazon DynamoDB documentation:
+ 
+  We still honor this property even when getProtocol() is https, see
+  http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+  This property is expected to be set as a pipe separated list. If neither are
+  set, returns the value of the environment variable NO_PROXY/no_proxy.
+  This environment variable is expected to be set as a comma separated list.
+```
+### @ClientConfiguration/setNonProxyHosts.m
+```notalanguage
+  SETNONPROXYHOSTS Sets optional hosts accessed without going through the proxy
+  Hosts should be specified as a character vector.
 ```
 ### @ClientConfiguration/setProxyHost.m
 ```notalanguage
@@ -950,14 +1143,14 @@
 ```notalanguage
   OBJECT Root object for all the AWS SDK objects
 
-    Reference page in Doc Center
+    Documentation for aws.Object
        doc aws.Object
 
 ```
 
 ------
 
-## AWS Common Related Functions:
+## AWS Common Functions
 ### functions/Logger.m
 ```notalanguage
   Logger - Object definition for Logger
@@ -1141,4 +1334,4 @@
 
 ------------    
 
-[//]: # (Copyright 2019 The MathWorks, Inc.)
+[//]: # (Copyright 2019-2021 The MathWorks, Inc.)

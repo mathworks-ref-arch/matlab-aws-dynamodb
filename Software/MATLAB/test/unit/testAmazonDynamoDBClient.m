@@ -1,5 +1,5 @@
 classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
-    % TESTAMAZONDYNAMODBCLIENT Test for the  MATLAB Interface for AWS DynamoDB
+    % TESTAMAZONDYNAMODBCLIENT Test for the  MATLAB Interface for Amazon DynamoDB
     %
     % The test suite exercises the basic operations on the DynamoDB Client.
     %
@@ -18,7 +18,7 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
     % If the environment variable is not defined the standard AWS hosted version
     % will be used.
 
-    % Copyright 2019 The MathWorks, Inc.
+    % Copyright 2019-2021 The MathWorks, Inc.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Please add your test cases below
@@ -51,7 +51,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testInitialization');
             % Create the client and initialize
             ddb = aws.dynamodbv2.AmazonDynamoDBClient();
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             ddb.initialize();
 
             testCase.verifyNotEmpty(ddb.Handle);
@@ -63,20 +67,24 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testInitializationOtherCredentials');
             % Create the client and initialize using a temp copy of the
             % credentials file in the same directory
-            currentCreds = which('credentials.json');
-            [pathstr,~,~] = fileparts(currentCreds);
+            if ~strcmpi(getenv('GITLAB_CI'), 'true')
+                warning('Skipping test when not in CI system');
+            else
+                currentCreds = which('credentials.json');
+                [pathstr,~,~] = fileparts(currentCreds);
 
-            newCreds = fullfile(pathstr, 'testInitializationOtherCredentials.json');
-            copyfile(currentCreds,newCreds);
+                newCreds = fullfile(pathstr, 'testInitializationOtherCredentials.json');
+                copyfile(currentCreds,newCreds);
 
-            ddb = aws.dynamodbv2.AmazonDynamoDBClient();
-            ddb.useCredentialsProviderChain = false;
-            ddb.credentialsFilePath = newCreds;
-            ddb.initialize();
+                ddb = aws.dynamodbv2.AmazonDynamoDBClient();
+                ddb.useCredentialsProviderChain = false;
+                ddb.credentialsFilePath = newCreds;
+                ddb.initialize();
 
-            testCase.verifyNotEmpty(ddb.Handle);
-            delete(newCreds);
-            ddb.shutdown();
+                testCase.verifyNotEmpty(ddb.Handle);
+                delete(newCreds);
+                ddb.shutdown();
+            end
         end
 
 
@@ -88,7 +96,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             ddb.initialize();
 
             uuid = char(UUID.randomUUID());
@@ -139,7 +151,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             ddb.initialize();
 
             % configure a TableCreateRequest
@@ -191,7 +207,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testDescribeTable');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -268,7 +288,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testPutGetDeleteItem');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -394,7 +418,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testListTables');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -523,7 +551,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testQueryItem');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -629,7 +661,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testUpdateItem');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -761,7 +797,11 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             write(testCase.logObj,'debug','Testing testUpdateTable');
             import java.util.UUID;
             ddb = aws.dynamodbv2.AmazonDynamoDBClient;
-            ddb.useCredentialsProviderChain = false;
+            if strcmpi(getenv('GITLAB_CI'), 'true')
+                ddb.useCredentialsProviderChain = false;
+            else
+                ddb.useCredentialsProviderChain = true;
+            end
             if ~isempty(getenv('DDBENDPOINTURI'))
                 ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
             end
@@ -833,5 +873,124 @@ classdef testAmazonDynamoDBClient < matlab.unittest.TestCase
             ddb.shutdown();
         end
 
+        
+        function testItemSetGetNS(testCase)
+            write(testCase.logObj,'debug','Testing testItemSetGetNS');
+            import java.util.UUID;
+            ddb = aws.dynamodbv2.AmazonDynamoDBClient;
+            ddb.useCredentialsProviderChain = false;
+            if ~isempty(getenv('DDBENDPOINTURI'))
+                ddb.endpointURI = matlab.net.URI(getenv('DDBENDPOINTURI'));
+            end
+            ddb.initialize();
+
+            % set table name
+            uuid = char(UUID.randomUUID());
+            tableName = ['SetGetNSTestTable-', uuid];
+            % setup sample input
+            
+            % configure some sample data
+            %   table name: listTestTable-UUID
+            %     items: Name:   myArray
+            %            arrayA: 1.2  4.3
+            %                    4.5  7.4
+            %                    3.3  4.5
+            
+            keys = {'Name', 'arrayA'};
+            av1 = aws.dynamodbv2.model.AttributeValue();
+            av1.setS('myArray');
+            % DynamoDB stores numbers as strings
+            av2 = aws.dynamodbv2.model.AttributeValue();
+            n = 2;
+            m = 3;
+            % 2D array of random doubles
+            inputArrayA2D = rand(m, n);
+            % 1D array of doubles
+            inputArrayA1D = reshape(inputArrayA2D, 1, m*n);
+            % 1D cell array of Doubles
+            inputArrayACell1Dd = num2cell(inputArrayA1D);
+            % 1D cell array of empty doubles
+            inputArrayACell1Dc = cell(1, m*n);
+            inputArrayACell1Dc{1,m*n} = '';             %#ok<NASGU>
+            % 1D cell array of empty character vectors
+            inputArrayACell1Dc = cellfun(@(x) num2str(x, '%f'), inputArrayACell1Dd, 'UniformOutput', false);            
+            av2.setNS(inputArrayACell1Dc);            
+            values = {av1, av2};
+            attributeValues = containers.Map(keys, values);
+
+            % configure a TableCreateRequest
+            createTableRequest = aws.dynamodbv2.model.CreateTableRequest();
+            testCase.verifyNotEmpty(createTableRequest.Handle);
+            createTableRequest.setTableName(tableName);
+            pt = aws.dynamodbv2.model.ProvisionedThroughput(uint64(10), uint64(10));
+            createTableRequest.setProvisionedThroughput(pt);
+
+            % configure an attribute definition and key element schema for
+            % the primary key only
+            ad1 = aws.dynamodbv2.model.AttributeDefinition();
+            ad1.setAttributeName(keys{1});
+            ad1.setAttributeType(aws.dynamodbv2.model.ScalarAttributeType.S);
+            createTableRequest.setAttributeDefinitions([ad1]); %#ok<NBRAK>
+
+            % set the attribute that is the primary key, i.e. Name
+            kse = aws.dynamodbv2.model.KeySchemaElement(keys{1}, aws.dynamodbv2.model.KeyType.HASH);
+            createTableRequest.setKeySchema([kse]); %#ok<NBRAK>
+
+            % create the table
+            createResult = ddb.createTable(createTableRequest); %#ok<NASGU>
+
+            describeResult = ddb.describeTable(tableName);
+            tableDescription = describeResult.getTable();
+            status = tableDescription.getTableStatus();
+            while ~strcmp(status, 'ACTIVE')
+                pause(5);
+                describeResult = ddb.describeTable(tableName);
+                tableDescription = describeResult.getTable();
+                status = tableDescription.getTableStatus();
+            end
+
+            % put items before getting
+            putItemRequest = aws.dynamodbv2.model.PutItemRequest(tableName, attributeValues);
+            putItemResult = ddb.putItem(putItemRequest); %#ok<NASGU>
+
+            % configure get item request
+            itemToGet = containers.Map(keys(1), {av1});
+            getItemRequest = aws.dynamodbv2.model.GetItemRequest(tableName, itemToGet);
+            projectionExpression = '';
+            if ~isempty(projectionExpression)
+                getItemRequest.setProjectionExpression(projectionExpression);
+            end
+            getItemRequest.setConsistentRead(true);
+
+            % get the item
+            getItemResult = ddb.getItem(getItemRequest);
+            itemResult = getItemResult.getItem();
+
+            % check the item
+            resultKeys = itemResult.keys;
+            testCase.verifyTrue(strcmp(resultKeys{2}, 'arrayA'));
+            testCase.verifyTrue(strcmp(resultKeys{1}, 'Name'));
+            resultValues = itemResult.values;
+            resultValuesCell1Dc = resultValues{2}.getNS;
+            testCase.verifyEqual(numel(resultValuesCell1Dc), m*n);
+            testCase.verifyEqual(numel(inputArrayA1D), m*n);
+            % Don't compare the specific entries as a Set does not retain
+            % insert order
+                        
+            % cleanup
+            describeResult = ddb.describeTable(tableName);
+            tableDescription = describeResult.getTable();
+            status = tableDescription.getTableStatus();
+            while ~strcmp(status, 'ACTIVE')
+                pause(5);
+                describeResult = ddb.describeTable(tableName);
+                tableDescription = describeResult.getTable();
+                status = tableDescription.getTableStatus();
+            end
+            deleteResult = ddb.deleteTable(tableName); %#ok<NASGU>
+
+            ddb.shutdown();
+        end
+               
     end %methods
 end %class

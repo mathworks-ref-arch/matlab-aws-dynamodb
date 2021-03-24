@@ -1,6 +1,6 @@
 # Getting Started
 
-Once this package is installed and authentication is in place one can begin working with DynamoDB™ and looking at simple workflows. The [Basic Usage](BasicUsage.md) and [API Reference](DynamoDBApidoc.md) documents provides greater details on the classes and methods being used along with information on error checking.
+Once this package is installed and authentication is in place one can begin working with DynamoDB™ and looking at simple workflows. The [Basic Usage](BasicUsage.md) and [API Reference](DynamoDBApiDoc.md) documents provides greater details on the classes and methods being used along with information on error checking.
 
 Configure and create a DynamoDB table, using the lower-level API:
 ```matlab
@@ -76,10 +76,12 @@ Some sample scripts that can be used to test this package can be found in the ``
 
 Many corporate networks require Internet access to take place via a proxy server. This includes the traffic between a MATLAB® session and Amazon.
 
-Within the MATLAB environment it is possible to specify the proxy settings using the web section of the preferences panel as shown:   
-![Preferences_Panel](Images/prefspanel.png)   
-Often a username and password are not required.
+Within the MATLAB environment it is possible to specify the proxy settings using the web section of the preferences panel as shown:
 
+![Preferences_Panel](Images/prefspanel.png)   
+
+
+Often a username and password are not required.
 In Windows it is also possible to specify the proxy settings in Control Panel / Internet Options / Connections tab.
 
 Other operating systems have similar network preference controls. Depending on the network environment the proxy settings may also be configured automatically. However, by default the Client will only use a proxy server once configured to do so. Furthermore a complex proxy environment may use different proxies for different traffic types and destinations.

@@ -1,4 +1,4 @@
-# MATLAB Interface *for AWS DynamoDB*
+# MATLAB Interface *for Amazon DynamoDB*
 
 MATLAB® interface for the Amazon Web Services DynamoDB™ service. DynamoDB is a managed NoSQL database service that provides high performance and scalability. This package provides a basic interface to a subset of DynamoDB features from within MATLAB. Both the low-level interface and the higher-level *document* interfaces are supported. Calls to both interfaces can be used together.
 
@@ -143,7 +143,7 @@ The document interface is a higher-level interface.
 4. [MATLAB Parallel Server™](https://www.mathworks.com/products/distriben.html) (R2017a or later)
 
 ## License
-The license for the MATLAB Interface *for AWS DynamoDB* is available in the [LICENSE.md](LICENSE.md) file in this GitHub repository. This package uses certain third-party content which is licensed under separate license agreements. See the [pom.xml](Software/Java/pom.xml) file for third-party software downloaded at build time.
+The license for the MATLAB Interface *for Amazon DynamoDB* is available in the [LICENSE.md](LICENSE.md) file in this GitHub repository. This package uses certain third-party content which is licensed under separate license agreements. See the [pom.xml](Software/Java/pom.xml) file for third-party software downloaded at build time.
 
 ## Enhancement Request
 Provide suggestions for additional features or capabilities using the following link:   
@@ -152,4 +152,4 @@ https://www.mathworks.com/products/reference-architectures/request-new-reference
 ## Support
 Email: `mwlab@mathworks.com` or please log an issue.
 
-[//]: #  (Copyright 2019 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)

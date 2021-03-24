@@ -1,5 +1,10 @@
-# MATLAB Interface *for AWS DynamoDB*
+# MATLAB Interface *for Amazon DynamoDB*
 # Release Notes
+
+## Release 0.1.4 (22nd March 2020)
+* Updated to support integration testing
+* Added BatchWriteItem support
+* Added list support
 
 ## Release 0.1.3 (13th Oct 2020)
 * Bumped junit version
@@ -18,4 +23,4 @@
 ## Release 0.1.0 (21st Jun 2019)
 * Initial release to github.com
 
-[//]: #  (Copyright 2019-2020 The MathWorks, Inc.)
+[//]: #  (Copyright 2019-2021 The MathWorks, Inc.)
