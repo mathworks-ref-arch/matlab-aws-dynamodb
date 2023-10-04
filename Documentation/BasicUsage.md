@@ -259,7 +259,7 @@ In this example just one value is queried, *eng*, however multiple values can be
 % create & configure  the query request object
 queryRequest = aws.dynamodbv2.model.QueryRequest();
 queryRequest.setTableName(tableName);
-% check that the key is equal to 'Lanaguage'
+% check that the key is equal to 'Language'
 queryRequest.setKeyConditionExpression(['#a = :', 'Language']);
 
 % set the attribute name to the partition key, i.e. 'Language'

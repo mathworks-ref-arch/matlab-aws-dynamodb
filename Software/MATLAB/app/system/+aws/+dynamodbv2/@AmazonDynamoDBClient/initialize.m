@@ -5,9 +5,9 @@ function initStat = initialize(obj, varargin)
 %
 % Example:
 %    ddb = aws.dynamodbv2.AmazonDynamoDBClient();
-%    ddb.intialize();
+%    ddb.initialize();
 
-% Copyright 2019-2021 The MathWorks, Inc.
+% Copyright 2019-2023 The MathWorks, Inc.
 
 %% Imports
 % Exceptions

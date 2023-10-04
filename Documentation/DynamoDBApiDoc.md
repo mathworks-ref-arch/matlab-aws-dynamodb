@@ -94,7 +94,7 @@
  
   Example:
      ddb = aws.dynamodbv2.AmazonDynamoDBClient();
-     ddb.intialize();
+     ddb.initialize();
 ```
 ### @AmazonDynamoDBClient/listTables.m
 ```notalanguage
@@ -1334,4 +1334,4 @@
 
 ------------    
 
-[//]: # (Copyright 2019-2021 The MathWorks, Inc.)
+[//]: # (Copyright 2019-2023 The MathWorks, Inc.)
