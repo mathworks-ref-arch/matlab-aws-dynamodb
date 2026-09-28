@@ -1,3 +1,5 @@
+⛔️ **DEPRECATED** - Please use the [MATLAB AWS Support v2](https://github.com/mathworks-ref-arch/matlab-aws-support-v2). The [AWS SDK for Java v1.x reached end-of support on Dec 31, 2025](https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-java-v1-x-on-december-31-2025/). This repository is archived (no updates or fixes).
+
 # MATLAB Interface *for Amazon DynamoDB*
 
 MATLAB® interface for the Amazon Web Services DynamoDB™ service. DynamoDB is a managed NoSQL database service that provides high performance and scalability. This package provides a basic interface to a subset of DynamoDB features from within MATLAB. Both the low-level interface and the higher-level *document* interfaces are supported. Calls to both interfaces can be used together.
